@@ -2,6 +2,7 @@ package com.example.mvvmkotlin.viewmodel
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import com.example.mvvmkotlin.model.MessageData
 
@@ -23,8 +24,8 @@ class MsgViewModel: ViewModel() {
         return intent
     }
 
-//    fun receiveMsg(key: String): Any?{
-//        val bundle: Bundle? = intent.extras
-//        return bundle?.get(key)
-//    }
+    fun receiveMsg(intent: Intent, key: String): Any?{
+        val bundle: Bundle? = intent.extras
+        return bundle?.get(key)
+    }
 }
