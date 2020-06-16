@@ -11,16 +11,11 @@ class MsgViewModel: ViewModel() {
         return msg.msg
     }
 
-    fun sendMsg(context:Context, theClass:Class<*>, key:String, msg:MessageData):Intent {
+    fun sendMsg(context:Context, theClass:Class<*>, theMap:Map<String,MessageData>):Intent {
         val intent = Intent(context, theClass)
-        intent.putExtra(key,msg.msg)
-        return intent
-    }
-
-    fun sendMsg(context:Context, theClass:Class<*>, key:String, msg:MessageData, key2:String, msg2:MessageData):Intent {
-        val intent = Intent(context, theClass)
-        intent.putExtra(key,msg.msg)
-        intent.putExtra(key2,msg2.msg)
+        for (i in theMap) {
+            intent.putExtra(i.key,i.value.msg)
+        }
         return intent
     }
 

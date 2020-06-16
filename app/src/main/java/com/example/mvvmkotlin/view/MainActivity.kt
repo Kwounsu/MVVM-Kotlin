@@ -22,15 +22,13 @@ class MainActivity : AppCompatActivity() {
         button_MVVM.setOnClickListener {
             val mMessage = MessageData(editText_1.text.toString())
             val mMessage2 = MessageData(editText_2.text.toString())
-            msgViewModel.getMsg(mMessage)
-            msgViewModel.getMsg(mMessage2)
 
-            Toast.makeText(this, mMessage.msg + " " + mMessage2.msg,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, msgViewModel.getMsg(mMessage) + " " +
+                    msgViewModel.getMsg(mMessage2),Toast.LENGTH_SHORT).show()
 
-            startActivity(msgViewModel.sendMsg(
-                            this, AnotherActivity::class.java,
-                            "key", mMessage,
-                            "key2", mMessage2))
+            val sendingMap = mapOf("key" to mMessage, "key2" to mMessage2)
+            startActivity(msgViewModel
+                .sendMsg(this, AnotherActivity::class.java, sendingMap))
         }
     }
 }
