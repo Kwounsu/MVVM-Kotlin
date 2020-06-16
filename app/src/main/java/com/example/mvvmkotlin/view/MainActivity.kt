@@ -24,7 +24,13 @@ class MainActivity : AppCompatActivity() {
             val mMessage2 = MessageData(editText_2.text.toString())
             msgViewModel.getMsg(mMessage)
             msgViewModel.getMsg(mMessage2)
-            Toast.makeText(this, mMessage.msg + mMessage2.msg,Toast.LENGTH_SHORT).show()
+
+            Toast.makeText(this, mMessage.msg + " " + mMessage2.msg,Toast.LENGTH_SHORT).show()
+
+            startActivity(msgViewModel.sendMsg(
+                            this, AnotherActivity::class.java,
+                            "key", mMessage,
+                            "key2", mMessage2))
         }
     }
 }
